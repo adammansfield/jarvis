@@ -1,3 +1,4 @@
+import win32com.client
 import time
 
 
@@ -6,8 +7,10 @@ def get_date():
 
 
 def main():
+    voice = win32com.client.Dispatch("SAPI.SpVoice")
     text = get_date()
     print text
+    voice.Speak(text)
 
 
 if __name__ == '__main__':
