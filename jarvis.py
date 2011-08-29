@@ -22,7 +22,6 @@ def get_greeting():
     elif (hour >=5 and hour < 12):  greeting = 'Good morning'   + greetingName
     elif (hour >=12 and hour < 17): greeting = 'Good afternoon' + greetingName
     else:                           greeting = 'Good evening'   + greetingName
-
     return greeting
 
 def get_signoff():
@@ -36,7 +35,6 @@ def get_signoff():
     elif (hour >=5  and hour < 12): signoff = 'That is all for this morning. Have a pleasant day'       + signoffName
     elif (hour >=12 and hour < 17): signoff = 'That is all for this afternoon. Have a pleasant evening' + signoffName
     else:                           signoff = 'That is all for this evening. Have a pleasant night'     + signoffName
-
     return signoff
 
 def get_date():
