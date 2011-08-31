@@ -4,6 +4,8 @@ import random
 import string
 import time
 import shutil
+import imaplib
+import re
 import os
 import sys
 
@@ -69,9 +71,18 @@ def get_weather():
     return 'The weather in ' + city + ' is currently ' + current_condition + ' with a temperature of ' + current_temp + ' degrees. '\
            'Today there will be a high of ' + high_temp + ', and a low of ' + low_temp + '. '
 
+def get_newmail_count():
+    connection = imaplib.IMAP4_SSL("imap.gmail.com", 993)
+    connection.login(email_username, email_password)
+    unreadCount = int(re.search("UNSEEN (\d+)", connection.status("INBOX", "(UNSEEN)")[1][0]).group(1))
+    if   (unreadCount == 0):    result = 'You do not have any new e-mails. '
+    elif (unreadCount == 1):    result = 'You have one new e-mail. '
+    else:                       result = 'You have ' + str(unreadCount) + ' new e-mails. '    
+    return result
+
 def main():
     voice = win32com.client.Dispatch("SAPI.SpVoice")
-    text = get_greeting() + get_date() + get_weather() + get_signoff()
+    text = get_greeting() + get_date() + get_weather() + get_newmail_count() + get_signoff()
     print text
     voice.Speak(text)
     
