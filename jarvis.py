@@ -3,11 +3,27 @@ import pywapi
 import random
 import string
 import time
+import shutil
+import os
+import sys
 
-first_name = 'Adam'
-last_name = 'Mansfield'
-city = 'hamilton'
-location_id = 'CAXX0184'
+sys.path.append(os.getcwd() + "\\config")
+
+
+# Default User Config 
+first_name = 'John'
+last_name = 'Doe'
+city = 'New York'
+location_id = '10001'
+email_username = '1234@gmail.com'
+email_password = '1234'
+
+# Import custom userconfig
+try:
+    from userconfig import *
+except ImportError:
+    shutil.copyfile(os.getcwd() + "\\config\\default.py", os.getcwd() + "\\config\\userconfig.py")
+
 
 def get_greeting():
     option = random.uniform(0,100)
@@ -46,18 +62,18 @@ def get_date():
 
 def get_weather():
     weather = pywapi.get_weather_from_yahoo(location_id, 'metric')
-    currentCondition = string.lower(weather['condition']['text'])
-    currentTemp = weather['condition']['temp']
-    highTemp = weather['forecasts'][0]['high']
-    lowTemp = weather['forecasts'][0]['low']
-    return 'The weather in ' + city + ' is currently ' + currentCondition + ' with a temperature of ' + currentTemp + ' degrees. '\
-           'Today there will be a high of ' + highTemp + ', and a low of ' + lowTemp + '. '
+    current_condition = string.lower(weather['condition']['text'])
+    current_temp = weather['condition']['temp']
+    high_temp = weather['forecasts'][0]['high']
+    low_temp = weather['forecasts'][0]['low']
+    return 'The weather in ' + city + ' is currently ' + current_condition + ' with a temperature of ' + current_temp + ' degrees. '\
+           'Today there will be a high of ' + high_temp + ', and a low of ' + low_temp + '. '
 
 def main():
     voice = win32com.client.Dispatch("SAPI.SpVoice")
     text = get_greeting() + get_date() + get_weather() + get_signoff()
     print text
     voice.Speak(text)
-
+    
 if __name__ == '__main__':
     main()
