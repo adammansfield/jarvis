@@ -16,14 +16,15 @@ first_name = 'John'
 last_name = 'Doe'
 city = 'New York'
 location_id = '10001'
-email_username = '1234@gmail.com'
+email_username = 'default@gmail.com'
 email_password = '1234'
 
 # import custom userconfig if it exists
 try:
     from userconfig import *
 except ImportError:
-    shutil.copyfile(os.getcwd() + "\\config\\default.py", os.getcwd() + "\\config\\userconfig.py")
+    if (os.path.exists(os.getcwd() + "\\config\\default.py")):
+        shutil.copyfile(os.getcwd() + "\\config\\default.py", os.getcwd() + "\\config\\userconfig.py")
 
 
 def get_greeting():
@@ -102,6 +103,10 @@ def get_weather():
 
 def get_newmail_count():
     """Return the number of new email from gmail."""
+    # if default email then return an example output
+    if (email_username == "default@gmail.com"):
+        return 'You have 7 new e-mails. '
+    
     connection = imaplib.IMAP4_SSL("imap.gmail.com", 993)
     connection.login(email_username, email_password)
     
