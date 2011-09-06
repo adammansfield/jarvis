@@ -14,8 +14,8 @@ sys.path.append(os.getcwd() + "\\config")
 # userconfig variables 
 first_name = 'John'
 last_name = 'Doe'
-city = 'New York'
-location_id = '10001'
+city = 'Hamilton'
+country = 'Canada'
 email_username = 'default@gmail.com'
 email_password = '1234'
 
