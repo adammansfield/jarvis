@@ -6,6 +6,7 @@ Settings
 
 first_name = 'John'
 last_name = 'Doe'
+title = 'sir'
 city = 'Hamilton'
 country = 'Canada'
 email_username = 'default@gmail.com'

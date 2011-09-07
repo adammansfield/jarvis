@@ -14,6 +14,7 @@ sys.path.append(os.getcwd() + "\\config")
 # userconfig variables 
 first_name = 'John'
 last_name = 'Doe'
+title = 'sir'
 city = 'Hamilton'
 country = 'Canada'
 email_username = 'default@gmail.com'
@@ -33,11 +34,11 @@ def get_greeting():
     greeting_chance = random.uniform(0,100)
     
     if (name_chance <= 25): 
-        name = ', Mr. ' + last_name + '. '
+        name = ', ' + title + last_name + '. '
     elif (name_chance <= 50):
         name = ' ' + first_name + '. '
     elif (name_chance <= 75):
-        name = ' sir. '
+        name = ' ' + title
     else:
         name = '. '
 
@@ -65,7 +66,7 @@ def get_signoff():
     if (name_chance <= 33):
         name = ' ' + first_name + '. '
     elif (name_chance <= 66):
-        name = ' sir. '
+        name = title
     else:
         name = '. '
 
