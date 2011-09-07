@@ -30,15 +30,15 @@ except ImportError:
 
 def get_greeting():
     """Return a randomized, personalized greeting."""
-    name_chance = random.uniform(0,100)
-    greeting_chance = random.uniform(0,100)
+    name_chance = random.uniform(0, 100)
+    greeting_chance = random.uniform(0, 100)
     
     if (name_chance <= 25): 
         name = ', ' + title + last_name + '. '
     elif (name_chance <= 50):
         name = ' ' + first_name + '. '
     elif (name_chance <= 75):
-        name = ' ' + title
+        name = ' ' + title + '. '
     else:
         name = '. '
 
@@ -49,37 +49,39 @@ def get_greeting():
     else:
         hour = int(time.strftime("%H", time.localtime()))
         if (hour >=0  and hour < 5):
-            greeting = 'Good night' + name
+            greeting = 'Good night'
         elif (hour >=5  and hour < 12):
-            greeting = 'Good morning' + name
+            greeting = 'Good morning'
         elif (hour >=12 and hour < 17):
-            greeting = 'Good afternoon' + name
+            greeting = 'Good afternoon'
         else:
-            greeting = 'Good evening' + name
-            
+            greeting = 'Good evening'
+    
+    greeting += name    
     return greeting
 
 def get_signoff():
     """Return a sign off depending on the time of day."""
-    name_chance = random.uniform(0,100)
+    name_chance = random.uniform(0, 100)
     
     if (name_chance <= 33):
         name = ' ' + first_name + '. '
     elif (name_chance <= 66):
-        name = title
+        name = title + '. '
     else:
         name = '. '
 
     hour = int(time.strftime("%H", time.localtime()))
     if (hour >= 0  and hour < 5):
-        signoff = 'That is all for tonight. Have a pleasant sleep' + name
+        signoff = 'That is all for tonight. Have a pleasant sleep'
     elif (hour >= 5  and hour < 12):
-        signoff = 'That is all for this morning. Have a pleasant day' + name
+        signoff = 'That is all for this morning. Have a pleasant day'
     elif (hour >= 12 and hour < 17):
-        signoff = 'That is all for this afternoon. Have a pleasant evening' + name
+        signoff = 'That is all for this afternoon. Have a pleasant evening'
     else:
-        signoff = 'That is all for this evening. Have a pleasant night' + name
-        
+        signoff = 'That is all for this evening. Have a pleasant night'
+    
+    signoff += name    
     return signoff
 
 def get_date():
@@ -128,7 +130,7 @@ def get_newmail_count():
 
 
 def main():
-    """Concats and speaks all the information."""
+    """Concat and speak all the information."""
     voice = win32com.client.Dispatch("SAPI.SpVoice")
     speech = get_greeting() + get_date() + get_weather() + get_newmail_count() + get_signoff()
     print speech
