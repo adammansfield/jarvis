@@ -4,11 +4,9 @@ Settings
   * Type in your details here to personalize sayings to you. 
 '''
 
+title = 'Mr.' 
 first_name = 'John'
 last_name = 'Doe'
-title = 'sir'
-city = 'Hamilton'
-country = 'Canada'
+formal_address = 'sir'
 email_username = 'default@gmail.com'
-email_password = '1234'
-
+email_password = '1234'
