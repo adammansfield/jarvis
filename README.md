@@ -1,7 +1,15 @@
 [Jarvis](http://github.com/adammansfield/jarvis) - Intelligent Wakeup
 =====================================================================
 
-Jarvis is a script that on startup says the time, date, weather, emails, tasks and calendar events.
+Jarvis is a customizable script that when ran says the:
+* time
+* date
+* weather
+* emails
+
+Downloads
+---------
+[Download the latest release](http://adammansfield.org/projects/jarvis) for use on your computer.
 
 Dependencies
 ------------
