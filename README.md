@@ -2,6 +2,7 @@
 =====================================================================
 
 Jarvis is a customizable script that when ran says the:
+
 * time
 * date
 * weather
