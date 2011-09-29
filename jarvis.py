@@ -13,12 +13,12 @@ sys.path.append(os.getcwd() + "\\config")
 
 
 # default config variables
-title = 'Mr.' 
-first_name = 'John'
-last_name = 'Doe'
-formal_address = 'sir'
-email_username = 'default@gmail.com'
-email_password = 'hunter2'
+config_title = 'Mr.' 
+config_first_name = 'John'
+config_last_name = 'Doe'
+config_formal_address = 'sir'
+config_email_username = 'default@gmail.com'
+config_email_password = 'hunter2'
 
 # try to import custom config variables
 try:
@@ -28,23 +28,28 @@ except ImportError:
         shutil.copyfile(os.getcwd() + '\\config\\default.py', os.getcwd() + '\\config\\userconfig.py')
 
 
+def get_name(first_name, last_name, title, formal_address):
+    """Return a radomized name using title, address, and first or last name"""
+    chance = random.uniform(0, 100)
+    
+    if chance < 25: 
+        name = title + ' ' + last_name
+    elif chance < 50:
+        name = first_name
+    elif chance < 75:
+        name = formal_address
+    else:
+        name = ''
+        
+    return name
+
 def get_greeting():
     """Return a randomized, personalized greeting."""
-    name_chance = random.uniform(0, 100)
-    greeting_chance = random.uniform(0, 100)
+    chance = random.uniform(0, 100)
     
-    if name_chance <= 25: 
-        name = ', ' + title + ' ' + last_name + '. '
-    elif name_chance <= 50:
-        name = ' ' + first_name + '. '
-    elif name_chance <= 75:
-        name = ' ' + formal_address + '. '
-    else:
-        name = '. '
-
-    if greeting_chance <= 15:
+    if chance <= 15:
         greeting = 'Hello'
-    elif greeting_chance <= 30:
+    elif chance <= 30:
         greeting = 'Hi'
     else:
         hour = int(time.strftime('%H', time.localtime()))
@@ -57,19 +62,10 @@ def get_greeting():
         else:
             greeting = 'Good evening'
     
-    return greeting + name
+    return greeting
 
 def get_signoff():
     """Return a sign off depending on the time of day."""
-    name_chance = random.uniform(0, 100)
-    
-    if name_chance <= 33:
-        name = ' ' + first_name + '. '
-    elif name_chance <= 66:
-        name = ' ' + formal_address + '. '
-    else:
-        name = '. '
-
     hour = int(time.strftime('%H', time.localtime()))
     if hour >= 0  and hour < 5:
         signoff = 'That is all for tonight. Have a pleasant sleep'
@@ -80,7 +76,7 @@ def get_signoff():
     else:
         signoff = 'That is all for this evening. Have a pleasant night'
     
-    return signoff + name
+    return signoff
 
 def get_date():
     """Return the time (12 hour) and date (weekday, month day)."""
@@ -142,7 +138,14 @@ def get_newmail_count():
 def main():
     """Concat and speak all the information."""
     voice = win32com.client.Dispatch("SAPI.SpVoice")
-    speech = get_greeting() + get_date() + get_weather() + get_newmail_count() + get_signoff()
+    speech = \
+        get_greeting() + ' ' + \
+        get_name(config_title, config_first_name, config_last_name, config_formal_address) + '. ' + \
+        get_date() + \
+        get_weather() + \
+        get_newmail_count() + \
+        get_signoff() + ' ' + \
+        get_name(config_title, config_first_name, config_last_name, config_formal_address) + '.' 
     print speech
     voice.Speak(speech)
     

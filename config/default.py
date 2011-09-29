@@ -4,9 +4,9 @@ Settings
   * Type in your details here to personalize sayings to you. 
 '''
 
-title = 'Mr.' 
-first_name = 'John'
-last_name = 'Doe'
-formal_address = 'sir'
-email_username = 'default@gmail.com'
-email_password = '1234'
+config_title = 'Mr.' 
+config_first_name = 'John'
+config_last_name = 'Doe'
+config_formal_address = 'sir'
+config_email_username = 'default@gmail.com'
+config_email_password = '1234'
