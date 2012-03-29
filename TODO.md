@@ -1,3 +1,7 @@
+Features
+--------
+* implement activation on startup
+
 Refactoring
 -----------
 * add verbose option for
